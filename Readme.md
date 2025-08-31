@@ -2,30 +2,6 @@
 
 ## **Game Design Document**
 
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
-## 
-
 ## **Table of Contents**
 
 [Sky Harvest](#sky-harvest)
