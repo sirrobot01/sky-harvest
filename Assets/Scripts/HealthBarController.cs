@@ -5,17 +5,21 @@ public class HealthBarController : MonoBehaviour
     public PlayerDragonController dragon;
 
     [Header("Health Bar Sprites")]
-    public Sprite bar1_1, bar1_2, bar1_3;
-    public Sprite bar2_1, bar2_2, bar2_3;
-    public Sprite bar3_1, bar3_2, bar3_3;
-    public Sprite barH_1, barH_2;
-    public Sprite barG;
+    public Sprite bar1_1, bar1_2, bar1_3; // Normal speed (3, 2, 1 HP)
+    public Sprite bar2_1, bar2_2, bar2_3; // Speed up (3, 2, 1 HP)
+    public Sprite bar3_1, bar3_2, bar3_3; // Slow down (3, 2, 1 HP)
+    public Sprite barH_1, barH_2;         // Stunned
+    public Sprite barG;                   // Game Over
 
     private SpriteRenderer sr;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        if (dragon == null)
+        {
+            dragon = FindObjectOfType<PlayerDragonController>();
+        }
     }
 
     void Update()
@@ -35,34 +39,32 @@ public class HealthBarController : MonoBehaviour
 
         if (dragon.isStunned)
         {
-            float stunnedHealthPercent = (float)dragon.health / dragon.maxHealth;
-            if (stunnedHealthPercent > 0.33f) sr.sprite = barH_1;  // Medium/high health when stunned
-            else sr.sprite = barH_2;  // Low health when stunned
+            if (dragon.health > 1) sr.sprite = barH_1; // 2 or 3 HP when stunned
+            else sr.sprite = barH_2; // 1 HP when stunned
             return;
         }
-
+        
+        // Switched from using percentages to checking the integer health value directly.
+        // This is more reliable and avoids floating-point errors.
         float speed = PlayerDragonController.scrollSpeedMultiplier;
         int hp = dragon.health;
-
-        // Determine sprite based on speed & health (scale to maxHealth)
-        float healthPercent = (float)hp / dragon.maxHealth;
         
-        if (speed > 1f)
+        if (speed > 1f) // Speeding Up
         {
-            if (healthPercent > 0.66f) sr.sprite = bar2_1;  // High health
-            else if (healthPercent > 0.33f) sr.sprite = bar2_2;  // Medium health
-            else sr.sprite = bar2_3;  // Low health
+            if (hp == 3) sr.sprite = bar2_1;
+            else if (hp == 2) sr.sprite = bar2_2;
+            else sr.sprite = bar2_3; // Covers 1 HP
         }
-        else if (speed < 1f && speed > 0f)
+        else if (speed < 1f && speed > 0f) // Slowing Down
         {
-            if (healthPercent > 0.66f) sr.sprite = bar3_1;
-            else if (healthPercent > 0.33f) sr.sprite = bar3_2;
+            if (hp == 3) sr.sprite = bar3_1;
+            else if (hp == 2) sr.sprite = bar3_2;
             else sr.sprite = bar3_3;
         }
-        else
+        else // Normal Speed (or any other state like speed = 0)
         {
-            if (healthPercent > 0.66f) sr.sprite = bar1_1;
-            else if (healthPercent > 0.33f) sr.sprite = bar1_2;
+            if (hp == 3) sr.sprite = bar1_1;
+            else if (hp == 2) sr.sprite = bar1_2;
             else sr.sprite = bar1_3;
         }
     }
