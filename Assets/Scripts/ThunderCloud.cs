@@ -13,7 +13,7 @@ public class ThunderCloud : MonoBehaviour
     // --- NEW --- This is the slot for your audio file.
     public AudioClip thunderSoundClip; 
     [Header("Movement")]
-    public float scrollSpeed = 0.01f;
+    public float scrollSpeed = 4f;
     public float offScreenDestroyX = -20f; // X position to destroy the object
 
     private float strikeTimer;
@@ -44,7 +44,7 @@ public class ThunderCloud : MonoBehaviour
         if (GameManager.isLevelOver) return;
 
         // The cloud now continuously scrolls to the left.
-        transform.position += Vector3.left * scrollSpeed * PlayerDragonController.scrollSpeedMultiplier;
+        transform.position += Vector3.left * scrollSpeed * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
 
         // Strike timer logic remains the same.
         strikeTimer -= Time.deltaTime;

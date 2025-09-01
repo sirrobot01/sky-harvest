@@ -3,7 +3,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
     [Header("Finish Line Settings")]
-    public float scrollSpeed = 0.01f;
+    public float scrollSpeed = 4f;
     
     [Header("Finish Line Mode")]
     [Tooltip("If true, finish line acts as checkpoint instead of ending game")]
@@ -29,7 +29,7 @@ public class FinishLine : MonoBehaviour
         
         if (!dragon.isDead)
         {
-            float scrollAmount = scrollSpeed * PlayerDragonController.scrollSpeedMultiplier;
+            float scrollAmount = scrollSpeed * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
             transform.position -= new Vector3(scrollAmount, 0f, 0f);
         }
     }

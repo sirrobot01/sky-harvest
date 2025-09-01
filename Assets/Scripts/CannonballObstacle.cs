@@ -33,10 +33,10 @@ public class Cannonball : MonoBehaviour
         timer += Time.deltaTime;
 
         // Vertical movement (up)
-        float yMovement = 0.01f * speedMultiplier;
+        float yMovement = 4f * speedMultiplier * Time.deltaTime;
 
         // Horizontal movement (left)
-        float xMovement = 0.01f * PlayerDragonController.scrollSpeedMultiplier;
+        float xMovement = 4f * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
 
         transform.position += new Vector3(-xMovement, yMovement, 0);
 

@@ -6,7 +6,7 @@ public class BuildingObstacle : MonoBehaviour
     {
         if (GameManager.isLevelOver) return;
         
-        transform.position += Vector3.left * 0.01f * PlayerDragonController.scrollSpeedMultiplier;
+        transform.position += Vector3.left * 4f * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
     }
 }
 

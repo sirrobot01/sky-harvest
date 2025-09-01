@@ -18,7 +18,7 @@ public class EnhancedBackgroundManager : MonoBehaviour
     public float parallaxSpeed = 0.5f; // How fast background moves relative to game speed
     
     [Header("Scrolling Settings")]
-    public float baseScrollSpeed = 2f;
+    public float baseScrollSpeed = 4f;
     public bool followDragonSpeed = true;
     
     [Header("References")]

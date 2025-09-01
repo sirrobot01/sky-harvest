@@ -5,7 +5,7 @@ public class Missile : MonoBehaviour
     [Header("Missile Behavior")]
     public float trackingTime = 2f; // How long missile tracks player
     public float trackingSpeed = 2f; // How fast missile moves toward player
-    public float normalSpeed = 0.01f;
+    public float normalSpeed = 4f;
     
     private PlayerDragonController target;
     private float trackingTimer = 0f;
@@ -30,7 +30,7 @@ public class Missile : MonoBehaviour
         if (target == null || target.isDead)
         {
             // Just move left if no target
-            transform.position += Vector3.left * normalSpeed * PlayerDragonController.scrollSpeedMultiplier;
+            transform.position += Vector3.left * normalSpeed * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
             return;
         }
         
@@ -44,7 +44,7 @@ public class Missile : MonoBehaviour
         {
             // Stop tracking, just move left
             isTracking = false;
-            transform.position += Vector3.left * normalSpeed * PlayerDragonController.scrollSpeedMultiplier;
+            transform.position += Vector3.left * normalSpeed * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
         }
     }
     
@@ -56,7 +56,7 @@ public class Missile : MonoBehaviour
         
         // Combine tracking movement with leftward scroll
         Vector3 trackingMovement = direction * trackingSpeed * Time.deltaTime;
-        Vector3 scrollMovement = Vector3.left * normalSpeed * PlayerDragonController.scrollSpeedMultiplier;
+        Vector3 scrollMovement = Vector3.left * normalSpeed * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
         
         transform.position += trackingMovement + scrollMovement;
         

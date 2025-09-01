@@ -39,6 +39,7 @@ public class HealthBarController : MonoBehaviour
 
         if (dragon.isStunned)
         {
+            // Stunned logic can still use percentages or be simplified if needed.
             if (dragon.health > 1) sr.sprite = barH_1; // 2 or 3 HP when stunned
             else sr.sprite = barH_2; // 1 HP when stunned
             return;

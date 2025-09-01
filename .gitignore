@@ -22,3 +22,7 @@ UserSettings/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+.idea/
+.vscode/
+.vs/
+.vsconfig

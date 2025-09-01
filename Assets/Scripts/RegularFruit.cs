@@ -65,7 +65,7 @@ public class Fruit : MonoBehaviour
     {
         if (GameManager.isLevelOver) return;
         
-        float speed = 0.01f * PlayerDragonController.scrollSpeedMultiplier;
+        float speed = 4f * PlayerDragonController.scrollSpeedMultiplier * Time.deltaTime;
         transform.position += Vector3.left * speed;
         
         // Add floating animation for heart fruit
